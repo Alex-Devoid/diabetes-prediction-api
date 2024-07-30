@@ -11,6 +11,7 @@ format: html
 
 This document details the modeling process for predicting the `Diabetes_binary` outcome using various machine learning techniques, including Logistic Regression, Classification Tree, and Random Forest. We utilize the `caret` package for model training and evaluation, employing log loss as our primary metric.
 
+
 ## Log Loss and Its Importance
 
 Log loss, or logarithmic loss, measures the accuracy of a classification model by penalizing false classifications. Unlike accuracy, which simply counts correct classifications, log loss takes into account the confidence of the predictions, giving higher penalties for confident but wrong predictions. This makes log loss particularly suitable for situations where understanding the certainty of predictions is crucial, such as medical diagnosis.
