@@ -123,3 +123,50 @@ ggplot(diabetes_data, aes(x = Diabetes_binary)) +
   theme_minimal() +
   labs(title = "Distribution of Diabetes Status", x = "Diabetes Status", y = "Count")
 ```
+
+## Multivariate Analysis
+
+We explore relationships between variables, with an emphasis on how they relate to the response variable `Diabetes_binary`.
+
+```{r}
+# Relationship between Age and Diabetes
+ggplot(diabetes_data, aes(x = Age, fill = Diabetes_binary)) +
+  geom_bar(position = "fill", alpha = 0.7) +
+  theme_minimal() +
+  labs(title = "Age and Diabetes", x = "Age Range", y = "Proportion", fill = "Diabetes")
+
+# BMI vs. Diabetes
+ggplot(diabetes_data, aes(x = BMI, fill = Diabetes_binary)) +
+  geom_histogram(binwidth = 1, position = "fill", alpha = 0.7) +
+  theme_minimal() +
+  labs(title = "BMI and Diabetes", x = "BMI", y = "Proportion", fill = "Diabetes")
+
+# General Health vs. Diabetes
+ggplot(diabetes_data, aes(x = GeneralHealth, fill = Diabetes_binary)) +
+  geom_bar(position = "fill", alpha = 0.7) +
+  theme_minimal() +
+  labs(title = "General Health and Diabetes", x = "General Health", y = "Proportion", fill = "Diabetes")
+```
+
+## Data Transformations
+
+If necessary, we apply transformations such as logarithmic scaling to improve the analysis and visualization.
+
+```{r}
+# Example: Log transformation of BMI if needed
+diabetes_data <- diabetes_data %>%
+  mutate(BMI_log = log(BMI + 1)) # Adding 1 to avoid log(0)
+
+# Re-check distribution of transformed BMI
+ggplot(diabetes_data, aes(x = BMI_log)) +
+  geom_histogram(binwidth = 0.1, fill = "purple", alpha = 0.7) +
+  theme_minimal() +
+  labs(title = "Log-Transformed BMI Distribution", x = "Log(BMI)", y = "Count")
+```
+
+# Conclusion
+
+The exploratory data analysis provided valuable insights into the distribution and relationships among key health indicators related to diabetes. We observed significant associations between variables such as age, BMI, and general health status with diabetes prevalence. These findings will guide the feature selection and model building processes in the subsequent stages. Further steps will include more detailed statistical analysis, feature engineering, and predictive modeling to better understand and predict diabetes status.
+
+
+
