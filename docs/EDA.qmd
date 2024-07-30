@@ -123,3 +123,27 @@ ggplot(diabetes_data, aes(x = Diabetes_binary)) +
   theme_minimal() +
   labs(title = "Distribution of Diabetes Status", x = "Diabetes Status", y = "Count")
 ```
+
+## Multivariate Analysis
+
+We explore relationships between variables, with an emphasis on how they relate to the response variable `Diabetes_binary`.
+
+```{r}
+# Relationship between Age and Diabetes
+ggplot(diabetes_data, aes(x = Age, fill = Diabetes_binary)) +
+  geom_bar(position = "fill", alpha = 0.7) +
+  theme_minimal() +
+  labs(title = "Age and Diabetes", x = "Age Range", y = "Proportion", fill = "Diabetes")
+
+# BMI vs. Diabetes
+ggplot(diabetes_data, aes(x = BMI, fill = Diabetes_binary)) +
+  geom_histogram(binwidth = 1, position = "fill", alpha = 0.7) +
+  theme_minimal() +
+  labs(title = "BMI and Diabetes", x = "BMI", y = "Proportion", fill = "Diabetes")
+
+# General Health vs. Diabetes
+ggplot(diabetes_data, aes(x = GeneralHealth, fill = Diabetes_binary)) +
+  geom_bar(position = "fill", alpha = 0.7) +
+  theme_minimal() +
+  labs(title = "General Health and Diabetes", x = "General Health", y = "Proportion", fill = "Diabetes")
+```
