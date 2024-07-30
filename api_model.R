@@ -3,8 +3,8 @@ library(plumber)
 library(caret)
 library(tidyverse)
 
-# Load the best model (you should replace this with the actual file path and model object)
-load("path/to/your/best_model.RData")
+
+load("docs/logistic_model.RData")
 
 # Define the `pred` endpoint
 # This function takes in parameters and returns the prediction from the model
