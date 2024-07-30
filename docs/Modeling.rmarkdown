@@ -1,10 +1,10 @@
-
 ---
 title: "ST558- Final Project, Modeling File"
 author: "Alex Devoid"
 date: "July 29, 2024"
 format: html
 ---
+
 
 
 # Introduction
@@ -18,6 +18,7 @@ Log loss, or logarithmic loss, measures the accuracy of a classification model b
 ## Data Preparation
 
 The dataset has been split into training and testing sets, with 70% allocated to training and 30% to testing. We have also scaled the numerical features and encoded categorical variables as factors, following the same data cleaning procedures used in the EDA.
+
 
 ```{r}
 # Load necessary libraries
@@ -71,6 +72,7 @@ cat("Final levels of all factors in the dataset:\n")
 sapply(training_data_scaled, levels)
 ```
 
+
 # Logistic Regression
 
 Logistic regression is a statistical model used for binary classification tasks. It predicts the probability of an outcome that can only take two possible values (like having diabetes or not). Logistic regression is appropriate here because our response variable, `Diabetes_binary`, is binary.
@@ -78,6 +80,7 @@ Logistic regression is a statistical model used for binary classification tasks.
 ## Model Training
 
 We use the `caret` package to fit three candidate logistic regression models with different sets of predictors. The best model is selected based on log loss.
+
 
 ```{r}
 # Training control setup for cross-validation
@@ -90,6 +93,7 @@ logistic_model <- train(Diabetes_binary ~ ., data = training_data_scaled, method
 logistic_model
 ```
 
+
 # Classification Tree
 
 A classification tree is a type of decision tree that is used for classifying a dataset into distinct classes. It works by splitting the dataset into branches based on feature values that best separate the classes.
@@ -97,6 +101,7 @@ A classification tree is a type of decision tree that is used for classifying a 
 ## Model Training
 
 We use `caret` to fit a classification tree model with different complexity parameters. The best model is selected using cross-validated log loss.
+
 
 ```{r}
 # Classification tree model training
@@ -106,6 +111,7 @@ tree_model <- train(Diabetes_binary ~ ., data = training_data_scaled, method = "
 tree_model
 ```
 
+
 # Random Forest
 
 Random forests are an ensemble learning method that operates by constructing multiple decision trees during training and outputting the mode of the classes as the prediction. It helps in improving accuracy and controlling overfitting.
@@ -113,6 +119,7 @@ Random forests are an ensemble learning method that operates by constructing mul
 ## Model Training
 
 We fit a random forest model with different numbers of trees and maximum features considered at each split. The best model is selected based on log loss.
+
 
 ```{r}
 # Random forest model training
@@ -122,9 +129,11 @@ rf_model <- train(Diabetes_binary ~ ., data = training_data_scaled, method = "rf
 rf_model
 ```
 
+
 # Final Model Selection
 
 After fitting the models, we compare their performance on the test set using log loss and select the best-performing model.
+
 
 ```{r}
 # Predictions on the test set
@@ -143,7 +152,9 @@ tree_loss
 rf_loss
 ```
 
+
 # Conclusion
 
 The modeling process involved fitting and evaluating three types of models: Logistic Regression, Classification Tree, and Random Forest. We used log loss as the evaluation metric and selected the best model based on performance on the test set. The selected model will be further tuned and validated before deployment.
+
 
