@@ -3,12 +3,13 @@ library(plumber)
 library(caret)
 library(tidyverse)
 
-
+# Load the model
 load("docs/logistic_model.RData")
 
 # Define the `pred` endpoint
 # This function takes in parameters and returns the prediction from the model
 # Use default values for predictors if not provided
+
 #* @apiTitle Diabetes Prediction API
 
 #* Predict Diabetes Status
@@ -59,6 +60,6 @@ function() {
   )
 }
 
-# Plumber router
+# Start the plumber API
 r <- plumb("api_model.R")
-r$run(port=8000)
+r$run(host = "0.0.0.0", port = 8000)
