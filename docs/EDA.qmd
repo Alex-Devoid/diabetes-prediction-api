@@ -2,7 +2,7 @@
 title: "ST558-Final Project EDA"
 format: html
 author: "Alex Devoid" 
-date: "July 30, 2024"
+date: "July 29, 2024"
 purpose: "ST558-Final Project"
 ---
   

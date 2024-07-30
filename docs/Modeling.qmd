@@ -1,0 +1,38 @@
+
+---
+title: "ST558- Final Project, Modeling File"
+author: "Alex Devoid"
+date: "July 29, 2024"
+format: html
+---
+  
+# Introduction
+  
+This document details the modeling process for predicting the `Diabetes_binary` outcome using various machine learning techniques, including Logistic Regression, Classification Tree, and Random Forest. We utilize the `caret` package for model training and evaluation, employing log loss as our primary metric.
+
+## Log Loss and Its Importance
+
+Log loss, or logarithmic loss, measures the accuracy of a classification model by penalizing false classifications. Unlike accuracy, which simply counts correct classifications, log loss takes into account the confidence of the predictions, giving higher penalties for confident but wrong predictions. This makes log loss particularly suitable for situations where understanding the certainty of predictions is crucial, such as medical diagnosis.
+
+## Data Preparation
+
+The dataset has been split into training and testing sets, with 70% allocated to training and 30% to testing. We have also scaled the numerical features and encoded categorical variables as factors.
+
+```{r}
+# Load necessary libraries
+library(caret)
+library(dplyr)
+
+# Load the data
+data <- read.csv("../diabetes_binary_health_indicators_BRFSS2015.csv")
+
+# Convert categorical variables to factors
+data <- data %>%
+  mutate(across(where(is.numeric), as.factor))
+
+# Split the data
+set.seed(42)
+trainIndex <- createDataPartition(data$Diabetes_binary, p = .7, list = FALSE)
+training_data <- data[trainIndex,]
+testing_data <- data[-trainIndex,]
+```
