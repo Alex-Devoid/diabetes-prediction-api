@@ -1,3 +1,4 @@
+
 ---
 title: "ST558-Final Project EDA"
 format: html
@@ -5,3 +6,46 @@ author: "Alex Devoid"
 date: "July 30, 2024"
 purpose: "ST558-Final Project"
 ---
+
+
+# Introduction
+
+## Dataset Overview
+
+The dataset "Diabetes Health Indicators" comprises data collected through the Behavioral Risk Factor Surveillance System (BRFSS) in 2015. This dataset includes a variety of health-related metrics and demographic information for individuals, with a particular emphasis on diabetes prevalence.
+
+### Key Variables for Analysis
+- **Diabetes_binary**: A binary response variable indicating diabetes diagnosis (1 for diagnosed, 0 for not diagnosed).
+- **HighBP**: Indicates whether the respondent has high blood pressure (1 for yes, 0 for no).
+- **HighChol**: Indicates if the respondent has high cholesterol.
+- **CholCheck**: Indicates if the respondent had a cholesterol check in the past five years.
+- **BMI**: Body Mass Index, calculated from the respondent's height and weight.
+- **Smoker**: Indicates current smoking status.
+- **PhysActivity**: Indicates if the respondent participates in any physical activity.
+- **Fruits and Veggies**: Consumption indicators.
+- **GeneralHealth**: Self-reported health status on a scale from excellent to poor.
+- **Age**: Categorical age ranges.
+- **Sex**: Gender of the respondent.
+
+## Purpose of EDA
+The primary goals of this exploratory data analysis (EDA) are to:
+  1. **Understand Data Structure**: Examine data storage formats and validate data integrity.
+2. **Data Validation**: Perform checks for missing values and data consistency.
+3. **Data Cleaning**: Handle missing values and convert variables into appropriate formats, like factors with meaningful level names.
+4. **Distributions Analysis**: Analyze distributions of individual variables and investigate their relationships with the response variable, `Diabetes_binary`.
+5. **Data Transformation**: Apply necessary transformations, re-examine distributions, and relationships.
+
+# Data Import and Cleaning
+
+## Importing Data
+
+```{r}
+library(tidyverse)
+
+# Load the dataset
+data_path <- "../diabetes_binary_health_indicators_BRFSS2015.csv"
+diabetes_data <- read_csv(data_path)
+
+# Display the first few rows of the data
+head(diabetes_data)
+```
