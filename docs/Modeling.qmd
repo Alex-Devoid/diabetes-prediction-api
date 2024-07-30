@@ -89,7 +89,7 @@ logistic_model <- train(Diabetes_binary ~ ., data = training_data_scaled, method
 
 # Display the best logistic model
 
-save(logistic_model, file = "logistic_model.RData")
+#save(logistic_model, file = "logistic_model.RData")
 ```
 
 # Classification Tree
@@ -106,7 +106,7 @@ tree_model <- train(Diabetes_binary ~ ., data = training_data_scaled, method = "
 
 # Display the best classification tree model
 
-save(tree_model, file = "tree_model.RData")
+#save(tree_model, file = "tree_model.RData")
 ```
 
 # Random Forest
@@ -128,7 +128,7 @@ rf_model <- train(Diabetes_binary ~ .,
 
 # Display the best random forest model
 
-save(rf_model, file = "random_forest.RData")
+#save(rf_model, file = "random_forest.RData")
 ```
 
 # Final Model Selection
@@ -136,20 +136,30 @@ save(rf_model, file = "random_forest.RData")
 After fitting the models, we compare their performance on the test set using log loss and select the best-performing model.
 
 ```{r}
+# Define the LogLoss function
+LogLoss <- function(actual, predicted, eps = 1e-15) {
+  predicted <- pmax(pmin(predicted, 1 - eps), eps)
+  -mean(actual * log(predicted) + (1 - actual) * log(1 - predicted))
+}
+
 # Predictions on the test set
 logistic_pred <- predict(logistic_model, newdata = testing_data_scaled, type = "prob")[, 2]
 tree_pred <- predict(tree_model, newdata = testing_data_scaled, type = "prob")[, 2]
 rf_pred <- predict(rf_model, newdata = testing_data_scaled, type = "prob")[, 2]
 
+# Convert the actuals to 0/1 if they are factors
+actual <- as.numeric(testing_data_scaled$Diabetes_binary) - 1
+
 # Calculating log loss for each model
-logistic_loss <- LogLoss(testing_data$Diabetes_binary, logistic_pred)
-tree_loss <- LogLoss(testing_data$Diabetes_binary, tree_pred)
-rf_loss <- LogLoss(testing_data$Diabetes_binary, rf_pred)
+logistic_loss <- LogLoss(actual, logistic_pred)
+tree_loss <- LogLoss(actual, tree_pred)
+rf_loss <- LogLoss(actual, rf_pred)
 
 # Output the log loss for each model
-logistic_loss
-tree_loss
-rf_loss
+print(logistic_loss)
+print(tree_loss)
+print(rf_loss)
+
 ```
 
 # Conclusion
