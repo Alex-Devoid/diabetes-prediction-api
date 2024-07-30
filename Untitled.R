@@ -1,17 +1,17 @@
 ---
-title: "ST558-Final Project EDA"
+  title: "ST558-Final Project EDA"
 format: html
 author: "Alex Devoid" 
 date: "July 30, 2024"
 purpose: "ST558-Final Project"
 ---
-
-
-# Introduction
-
-## Dataset Overview
-
-The dataset "Diabetes Health Indicators" comprises data collected through the Behavioral Risk Factor Surveillance System (BRFSS) in 2015. This dataset includes a variety of health-related metrics and demographic information for individuals, with a particular emphasis on diabetes prevalence.
+  
+  
+  # Introduction
+  
+  ## Dataset Overview
+  
+  The dataset "Diabetes Health Indicators" comprises data collected through the Behavioral Risk Factor Surveillance System (BRFSS) in 2015. This dataset includes a variety of health-related metrics and demographic information for individuals, with a particular emphasis on diabetes prevalence.
 
 ### Key Variables for Analysis
 - **Diabetes_binary**: A binary response variable indicating diabetes diagnosis (1 for diagnosed, 0 for not diagnosed).

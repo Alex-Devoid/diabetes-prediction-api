@@ -108,10 +108,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="introduction" class="level1">
-<h1>Introduction</h1>
-<section id="dataset-overview" class="level2">
-<h2 class="anchored" data-anchor-id="dataset-overview">Dataset Overview</h2>
+<p># Introduction</p>
+<p>## Dataset Overview</p>
 <p>The dataset “Diabetes Health Indicators” comprises data collected through the Behavioral Risk Factor Surveillance System (BRFSS) in 2015. This dataset includes a variety of health-related metrics and demographic information for individuals, with a particular emphasis on diabetes prevalence.</p>
 <section id="key-variables-for-analysis" class="level3">
 <h3 class="anchored" data-anchor-id="key-variables-for-analysis">Key Variables for Analysis</h3>
@@ -129,11 +127,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Sex</strong>: Gender of the respondent.</li>
 </ul>
 </section>
-</section>
 <section id="purpose-of-eda" class="level2">
 <h2 class="anchored" data-anchor-id="purpose-of-eda">Purpose of EDA</h2>
 <p>The primary goals of this exploratory data analysis (EDA) are to: 1. <strong>Understand Data Structure</strong>: Examine data storage formats and validate data integrity. 2. <strong>Data Validation</strong>: Perform checks for missing values and data consistency. 3. <strong>Data Cleaning</strong>: Handle missing values and convert variables into appropriate formats, like factors with meaningful level names. 4. <strong>Distributions Analysis</strong>: Analyze distributions of individual variables and investigate their relationships with the response variable, <code>Diabetes_binary</code>. 5. <strong>Data Transformation</strong>: Apply necessary transformations, re-examine distributions, and relationships.</p>
-</section>
 </section>
 <section id="data-import-and-cleaning" class="level1">
 <h1>Data Import and Cleaning</h1>
@@ -408,6 +404,28 @@ dbl (22): Diabetes_binary, HighBP, HighChol, CholCheck, BMI, Smoker, Stroke,...
 </div>
 </div>
 </section>
+<section id="data-transformations" class="level2">
+<h2 class="anchored" data-anchor-id="data-transformations">Data Transformations</h2>
+<p>If necessary, we apply transformations such as logarithmic scaling to improve the analysis and visualization.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example: Log transformation of BMI if needed</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>diabetes_data <span class="ot">&lt;-</span> diabetes_data <span class="sc">%&gt;%</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">BMI_log =</span> <span class="fu">log</span>(BMI <span class="sc">+</span> <span class="dv">1</span>)) <span class="co"># Adding 1 to avoid log(0)</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Re-check distribution of transformed BMI</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(diabetes_data, <span class="fu">aes</span>(<span class="at">x =</span> BMI_log)) <span class="sc">+</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="fl">0.1</span>, <span class="at">fill =</span> <span class="st">"purple"</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Log-Transformed BMI Distribution"</span>, <span class="at">x =</span> <span class="st">"Log(BMI)"</span>, <span class="at">y =</span> <span class="st">"Count"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="EDA_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>The exploratory data analysis provided valuable insights into the distribution and relationships among key health indicators related to diabetes. We observed significant associations between variables such as age, BMI, and general health status with diabetes prevalence. These findings will guide the feature selection and model building processes in the subsequent stages. Further steps will include more detailed statistical analysis, feature engineering, and predictive modeling to better understand and predict diabetes status.</p>
 </section>
 
 </main>
