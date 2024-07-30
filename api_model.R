@@ -4,11 +4,11 @@ library(caret)
 library(tidyverse)
 
 # Load the model
-load("docs/logistic_model.RData")
+load("/Users/alexdevoid/Documents/Stats/data_science/diabetes-prediction-api/docs/tree_model.RData")
 
 # Define the `pred` endpoint
 # This function takes in parameters and returns the prediction from the model
-# Use default values for predictors if not provided
+# default values for predictors if not provided
 
 #* @apiTitle Diabetes Prediction API
 
