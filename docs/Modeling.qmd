@@ -6,9 +6,9 @@ date: "July 29, 2024"
 format: html
 ---
   
-# Introduction
+  # Introduction
   
-This document details the modeling process for predicting the `Diabetes_binary` outcome using various machine learning techniques, including Logistic Regression, Classification Tree, and Random Forest. We utilize the `caret` package for model training and evaluation, employing log loss as our primary metric.
+  This document details the modeling process for predicting the `Diabetes_binary` outcome using various machine learning techniques, including Logistic Regression, Classification Tree, and Random Forest. We utilize the `caret` package for model training and evaluation, employing log loss as our primary metric.
 
 ## Log Loss and Its Importance
 
@@ -24,7 +24,7 @@ library(caret)
 library(dplyr)
 
 # Load the data
-data <- read.csv("../diabetes_binary_health_indicators_BRFSS2015.csv")
+data <- read.csv("data/diabetes_binary_health_indicators_BRFSS2015.csv")
 
 # Convert categorical variables to factors
 data <- data %>%
@@ -35,4 +35,28 @@ set.seed(42)
 trainIndex <- createDataPartition(data$Diabetes_binary, p = .7, list = FALSE)
 training_data <- data[trainIndex,]
 testing_data <- data[-trainIndex,]
+
+# Standardize numerical features
+preProcess_scale <- preProcess(training_data[, -1], method = c("center", "scale"))
+training_data_scaled <- predict(preProcess_scale, training_data[, -1])
+testing_data_scaled <- predict(preProcess_scale, testing_data[, -1])
+```
+
+# Logistic Regression
+
+Logistic regression is a statistical model used for binary classification tasks. It predicts the probability of an outcome that can only take two possible values (like having diabetes or not). Logistic regression is appropriate here because our response variable, `Diabetes_binary`, is binary.
+
+## Model Training
+
+We use the `caret` package to fit three candidate logistic regression models with different sets of predictors. The best model is selected based on log loss.
+
+```{r}
+# Training control setup for cross-validation
+train_control <- trainControl(method = "cv", number = 5, classProbs = TRUE, summaryFunction = mnLogLoss)
+
+# Logistic regression model training
+logistic_model <- train(Diabetes_binary ~ ., data = training_data_scaled, method = "glm", family = "binomial", trControl = train_control)
+
+# Display the best logistic model
+logistic_model
 ```
