@@ -1,5 +1,5 @@
-# Use the rocker/r-ver base image for a specific R version
-FROM rocker/r-ver:4.0.3
+
+FROM rocker/r-ver:4.2.1
 
 # Install necessary system dependencies
 RUN apt-get update && apt-get install -y \
@@ -10,11 +10,11 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install R packages
-RUN R -e "install.packages(c('plumber', 'caret', 'tidyverse'), repos='http://cran.us.r-project.org')"
+RUN R -e "install.packages(c('plumber', 'caret', 'dplyr', 'ggplot2'), repos='http://cran.us.r-project.org')"
 
 # Copy the API script and model files into the Docker image
 COPY api_model.R /app/api_model.R
-COPY docs/logistic_model.RData /app/logistic_model.RData
+COPY docs/random_forest.RData /app/random_forest.RData  
 
 # Expose the port that the API will run on
 EXPOSE 8000

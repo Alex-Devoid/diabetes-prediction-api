@@ -164,5 +164,4 @@ print(rf_loss)
 
 # Conclusion
 
-The modeling process involved fitting and evaluating three types of models: Logistic Regression, Classification Tree, and Random Forest. We used log loss as the evaluation metric and selected the best model based on performance on the test set. The selected model will be further tuned and validated before deployment.
-
+The modeling process involved fitting and evaluating three types of models: Logistic Regression, Classification Tree, and Random Forest. We used log loss as the evaluation metric and selected the best model based on performance on the test set. The logistic regression had the lowest score, but it was too big to push to github so I am using the classification tree.

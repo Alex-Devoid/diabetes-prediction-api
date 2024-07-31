@@ -4,7 +4,8 @@ library(caret)
 library(tidyverse)
 
 # Load the model
-load("/Users/alexdevoid/Documents/Stats/data_science/diabetes-prediction-api/docs/tree_model.RData")
+#The logistics model was too large to push to github
+load("docs/tree_model.RData")
 
 # Define the `pred` endpoint
 # This function takes in parameters and returns the prediction from the model
@@ -49,7 +50,7 @@ function(HighBP = 1, HighChol = 1, CholCheck = 1, BMI = 25,
   return(prediction)
 }
 
-# Define the `info` endpoint
+
 #* API Information
 #* @get /info
 function() {
