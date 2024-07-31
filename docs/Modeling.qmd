@@ -89,7 +89,7 @@ logistic_model <- train(Diabetes_binary ~ ., data = training_data_scaled, method
 
 # Display the best logistic model
 
-#save(logistic_model, file = "logistic_model.RData")
+save(logistic_model, file = "logistic_model.RData",compress = TRUE)
 ```
 
 # Classification Tree
@@ -106,7 +106,7 @@ tree_model <- train(Diabetes_binary ~ ., data = training_data_scaled, method = "
 
 # Display the best classification tree model
 
-#save(tree_model, file = "tree_model.RData")
+save(tree_model, file = "tree_model.RData",compress = TRUE)
 ```
 
 # Random Forest
@@ -128,7 +128,7 @@ rf_model <- train(Diabetes_binary ~ .,
 
 # Display the best random forest model
 
-#save(rf_model, file = "random_forest.RData")
+save(rf_model, file = "random_forest.RData",compress = TRUE)
 ```
 
 # Final Model Selection

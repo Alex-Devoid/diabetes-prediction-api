@@ -1,0 +1,17 @@
+---
+title: "ST558- Final Project, Modeling File"
+author: "Alex Devoid"
+date: "July 29, 2024"
+format: html
+---
+
+# Welcome to the Diabetes Prediction Project
+
+This project includes an exploratory data analysis and a modeling process to predict diabetes status using various machine learning techniques.
+
+## Contents
+
+- [Exploratory Data Analysis (EDA)](EDA.html)
+- [Modeling](Modeling.html)
+
+
