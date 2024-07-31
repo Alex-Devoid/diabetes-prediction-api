@@ -13,5 +13,6 @@ This project includes an exploratory data analysis and a modeling process to pre
 
 - [Exploratory Data Analysis (EDA)](EDA.html)
 - [Modeling](Modeling.html)
+- [.tar file](https://drive.google.com/file/d/1f4_lkZFNTjxCckYXNQZ_8C0ybZkzScLo/view?usp=sharing)
 
 
